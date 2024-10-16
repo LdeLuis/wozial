@@ -24,10 +24,10 @@
     Route::get('/tiendaenlinea', 'FrontController@tiendaenlinea')->name('front.tiendaenlinea');
     Route::get('/sobrewozial', 'FrontController@sobrewozial')->name('front.sobrewozial');
     Route::get('/marketing', 'FrontController@marketing')->name('front.marketing');
-    Route::get('/eventos', 'FrontController@eventos')->name('front.eventos');
     Route::get('/portafolio', 'FrontController@portafolio')->name('front.portafolio');
     Route::get('/contacto', 'FrontController@contacto')->name('front.contacto');
-
+    Route::get('/evento', 'FrontController@evento')->name('front.evento');
+    
 
     Route::get('/nosotros', 'FrontController@nosotros')->name('front.nosotros');
     Route::get('/tienda', 'FrontController@catalogo_productos')->name('front.catalogo_productos');

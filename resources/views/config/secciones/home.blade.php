@@ -462,7 +462,7 @@
                             <form action="{{ route('catalogo.destroy', $c->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este registro?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" style="background: none; border: none; color:black;">
+                                <button type="submit" class="btn btn-danger" style="background: red; border: none; color:white;">
                                     <i class="fas fa-trash" style="font-size: 3rem;"></i>
                                 </button>
                             </form>

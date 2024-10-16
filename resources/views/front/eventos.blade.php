@@ -35,8 +35,10 @@
         .div-p {
             margin-left: 8rem; 
             margin-top: 4.375rem;
+            white-space: pre-wrap;
             font-family: "Quicksand", sans-serif;
             font-weight: <weight>;
+
         }
 
         .div-p p {
@@ -197,41 +199,29 @@
 @section('content')
     <section class="principal">
         <h1>¡No te lo pierdas!</h1>
-        <div class="d-flex flex-lg-row flex-md-column flex-column">
-            <div class="col-lg-6 col-md-6 col-12">
-                <div class="titlepage">
-                    <div class="div-p">
-                        <h2>Un evento de Fungi People</h2>
-                        <p>
-                            🍄 Descubre el Misterio de los Hongo Sagrados 🍄
-                            <br> Únete a nosotros el 2 de noviembre a las 7:00 pm en Casa Mucha para una charla fascinante sobre los hongos sagrados. Exploraremos su historia, rituales y usos actuales en diferentes culturas y prácticas espirituales.
-                        </p>
-                        <p>
-                            🎤 Impartida por:
-                        </p>  
-                        <p>
-                            • Luis Villaseñor Ibarra, Etnomicólogo de la Universidad de Guadalajara.
-                        </p>
-                        <p>
-                            • María José Torres, Fungi People.
-                        </p>
-                        <p>💰 Costo: $480 por participante.</p>
-                        <p>¡Este evento es una oportunidad única para ampliar tu conocimiento y comprender la profundidad de los hongos sagrados en la cultura y la espiritualidad!</p>
-                        <p>¡Reserva tu lugar ahora para una noche de aprendizaje y reflexión! 🍄🔮</p>
-                    </div> 
-                    <div class="but-cen">
-                        <button class="button type1">
-                            <span class="btn-txt">MÁS INFO</span>
-                        </button>
+        @foreach ($evento as $e)
+                <div class="d-flex flex-lg-row flex-md-column flex-column">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="titlepage">
+                            <div class="div-p">
+                                <h2 data-model="evento" data-field="titulo" data-id="{{$e->id}}">{{$e->titulo}}</h2>
+                                <p data-model="evento" data-field="descripcion" data-id="{{$e->id}}">{{$e->descripcion}}</p>
+                            </div> 
+                            <div class="but-cen">
+                                <button class="button type1">
+                                    <span class="btn-txt">MÁS INFO</span>
+                                </button>
+                            </div>
+                        </div> 
                     </div>
-                </div> 
+                    <div class="col-lg-6 col-md-6 col-12">
+                    <div class="about-img">
+                        <img class="lock-img" src="{{ asset('img/photos/evento/' . $e->portada) }}"  alt="">
+                    </div>
+                    </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-12">
-               <div class="about-img">
-                  <img class="lock-img" src="{{ asset("img/design/recursos/home/eventos.png")}}"  alt="">
-               </div>
-            </div>
-        </div>
+        @endforeach
+        
     </section>
   
 @endsection

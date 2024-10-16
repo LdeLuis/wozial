@@ -348,7 +348,7 @@
                         <li class=""><a class="dropdown-item color1" href="{{route('front.marketing')}}">.marketing <br>digital</a>
                             <div class="barra1"></div>
                         </li>
-                        <li class=""><a class="dropdown-item color1" href="{{route('front.eventos')}}">.evento</a>
+                        <li class=""><a class="dropdown-item color1" href="{{route('front.evento')}}">.evento</a>
                             <div class="barra1"></div>
                         </li>
                         <li class=""><a class="dropdown-item color1" href="{{route('front.portafolio')}}">.portafolio</a>

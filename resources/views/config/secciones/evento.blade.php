@@ -188,57 +188,57 @@
                     @foreach ($evento as $e)
                     <div class="col-12" style="padding-bottom: 5rem;">
                         <div class="d-flex flex-row justify-content-center alin-items-center">
-                            <div class="col-1">
-                                <div class="form-check form-switch row" style="margin-top: 15rem;">
+                            <div class="col-1" style="margin-top: 15rem;">
+                                <div class="form-check form-switch row">
                                     <div class="col-12 d-flex align-items-center justify-content-center p-0 m-0 text-center">
                                         <input class="form-check-input switch-color-inicio switch-visible fs-3 shadow-none rounded-0" role="switch" id="switch_visible_3-{{$e->id}}" data-id="{{$e->id}}" data-campo="visible" type="checkbox" @if($e->visible == 1) checked @endif>
                                     </div>
                                 </div>
                                 <script>
-                                    $('#switch_visible_3-'+{{$e->id}}).change(function (e){
-                                        var checkbox = $(this);
-                                        console.log('switch-'+{{$e->id}});
-                                        var check = 0;
-                                        if (checkbox.prop('checked')) {
-                                            check = 1;
-                                        } else {
-                                            check = 2;
-                                        }
-                                        console.log(check);
-                                        var id = checkbox.attr("data-id");
-                                        var tcsrf = $('meta[name="csrf-token"]').attr('content');
-                                        var valor = check;
-                                        var URL = "{{ route('ajax.switch_visible_3') }}";
-                                        console.log("valor: " + valor);
-                                        $.ajax({
-                                            url: URL,
-                                            type: 'post',
-                                            dataType: 'json',
-                                            data: {
-                                                "_method": 'post',
-                                                "_token": tcsrf,
-                                                "id": id,
-                                                "valor": valor
-                                            }
-                                        })
-                                        .done(function(msg) {
-                                            console.log(msg);
-                                            if (msg.success) {
-                                                toastr["warning"](msg.mensaje);
-                                                if (msg.mensaje.valor == 1) {
-                                                    checkbox.prop('checked', true);
-                                                } else if (msg.mensaje.valor == 2) {
-                                                    checkbox.prop('checked', false);
-                                                }
+                                        $('#switch_visible_3-'+{{$e->id}}).change(function (e){
+                                            var checkbox = $(this);
+                                            console.log('switch-'+{{$e->id}});
+                                            var check = 0;
+                                            if (checkbox.prop('checked')) {
+                                                check = 1;
                                             } else {
-                                                toastr["error"](msg.mensaje);
+                                                check = 2;
                                             }
-                                        })
-                                        .fail(function(msg) {
-                                            toastr["error"]('Error al cambiar el estatus');
+                                            console.log(check);
+                                            var id = checkbox.attr("data-id");
+                                            var tcsrf = $('meta[name="csrf-token"]').attr('content');
+                                            var valor = check;
+                                            var URL = "{{ route('ajax.switch_visible_3') }}";
+                                            console.log("valor: " + valor);
+                                            $.ajax({
+                                                url: URL,
+                                                type: 'post',
+                                                dataType: 'json',
+                                                data: {
+                                                    "_method": 'post',
+                                                    "_token": tcsrf,
+                                                    "id": id,
+                                                    "valor": valor
+                                                }
+                                            })
+                                            .done(function(msg) {
+                                                console.log(msg);
+                                                if (msg.success) {
+                                                    toastr["success"](msg.mensaje);
+                                                    if (msg.mensaje.valor == 1) {
+                                                        checkbox.prop('checked', true);
+                                                    } else if (msg.mensaje.valor == 2) {
+                                                        checkbox.prop('checked', false);
+                                                    }
+                                                } else {
+                                                    toastr["error"](msg.mensaje);
+                                                }
+                                            })
+                                            .fail(function(msg) {
+                                                toastr["error"]('Error al cambiar el estatus');
+                                            });
                                         });
-                                    });
-                                </script>
+                                </script>
                             </div>
                             <div class="col-10 d-flex flex-row">
                                 <div class="col-6">

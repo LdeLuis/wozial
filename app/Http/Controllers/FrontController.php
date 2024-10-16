@@ -17,6 +17,7 @@ use App\Tematica;
 use App\Blog;
 use App\Elemento;
 use App\Ventana;
+use App\Evento;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -126,8 +127,10 @@ class FrontController extends Controller
         return view('front.sobrewozial', compact('config', 'elements'));
     }
 
-    public function eventos(){
-        return view('front.eventos');
+    public function evento(){
+        $evento = Evento::where('visible', 1)->get();
+
+        return view('front.eventos', compact('evento'));
     }
 
     public function aviso_privacidad() {

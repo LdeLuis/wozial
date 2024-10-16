@@ -18,7 +18,7 @@ class EventosController extends Controller
     public function index()
     {
         //
-        $veventos = Evento::all();
+        $eventos = Evento::all();
         return view('config.secciones.index', compact('eventos'));
     }
 

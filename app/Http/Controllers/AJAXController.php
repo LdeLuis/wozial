@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Categoria;
 use App\Catalogo;
 use App\Ventana;
+use App\Evento;
 use App\Elemento;
 
 class AJAXController extends Controller
@@ -99,18 +100,36 @@ class AJAXController extends Controller
             }
         }
         public function switch_visible_3(Request $request){
-            $catalalogo = Evento::find($request->id);
+            $evento = Evento::find($request->id);
 
+            if($request->valor == 1) {
+                $evento->visible = 1;
+                if($evento->save())
+                    return response()->json(['success'=>true, 'mensaje'=>'Estatus: Público, los clientes pueden ver este evento']);
+                else
+                    return response()->json(['success'=>false, 'mensaje'=>'Error al cambiar el estatus']);
+            } else {
+                $evento->visible = 0;
+                if($evento->save())
+                    return response()->json(['success'=>true, 'mensaje'=>'Estatus: Privado, los clientes no pueden ver este evento']);
+                else
+                    return response()->json(['success'=>false, 'mensaje'=>'Error al remover']);
+            }
+        }
+
+        public function switch_visible_e(Request $request){
+            $catalalogo = Evento::find($request->id);
+    
             if($request->valor == 1) {
                 $catalalogo->visible = 1;
                 if($catalalogo->save())
-                    return response()->json(['success'=>true, 'mensaje'=>'Estatus: Público, los clientes pueden ver este catalogo']);
+                    return response()->json(['success'=>true, 'mensaje'=>'Estatus: Público, los clientes pueden ver esta ventana']);
                 else
                     return response()->json(['success'=>false, 'mensaje'=>'Error al cambiar el estatus']);
             } else {
                 $catalalogo->visible = 0;
                 if($catalalogo->save())
-                    return response()->json(['success'=>true, 'mensaje'=>'Estatus: Privado, los clientes no pueden ver este catalogo']);
+                    return response()->json(['success'=>true, 'mensaje'=>'Estatus: Privado, los clientes no pueden ver esta ventana']);
                 else
                     return response()->json(['success'=>false, 'mensaje'=>'Error al remover']);
             }
